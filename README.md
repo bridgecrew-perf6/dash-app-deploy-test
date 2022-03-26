@@ -1,5 +1,5 @@
 # WebApp Dash Flask boilerplate
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/jgarciaf106/dash-boilerplate)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jgarciaf106/dash-boilerplate)
 
 ### Back-End Manual Installation:
 
