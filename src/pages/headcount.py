@@ -40,6 +40,7 @@ def headcount_layout(app):
                     legend={"x": 0, "y": 1},
                     hovermode="closest",
                 ),
+                
             },
         ),
         html.H6("Change the value in the text box to see callbacks in action!"),

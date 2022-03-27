@@ -6,7 +6,7 @@ from layout import app_layout
 
 
 ENV = os.getenv("FLASK_ENV")
-external_stylesheets=[dbc.themes.BOOTSTRAP]
+external_stylesheets=[dbc.themes.LUX]
 server = Flask(__name__)
 app = Dash(
     __name__,

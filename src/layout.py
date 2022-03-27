@@ -1,4 +1,5 @@
 
+from click import style
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, State, dcc, html
 from pages import *
@@ -12,8 +13,10 @@ def app_layout(app):
     app.layout = html.Div([
         dcc.Location(id='url', refresh=False),
         nav_bar,
-        html.Div(id='page-content'),
-    ])
+        html.Div(id='page-content')
+    ],
+        style = {'font-family': 'Helvetica'}
+        )
     
     # End dashboard rendering
     
