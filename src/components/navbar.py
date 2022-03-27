@@ -4,19 +4,16 @@ from dash_bootstrap_components._components.Container import Container
 
 PLOTLY_LOGO = "https://images.plot.ly/logo/new-branding/plotly-logomark.png"
 
+# make a reuseable navitem for the different examples
+dsh_sections = ["Headcount", "Summary", "Hires", "Attrition"]
 
-search_bar = dbc.Row(
-    [
-        dbc.Col(dbc.Input(type="search", placeholder="Search")),
-        dbc.Col(
-            dbc.Button(
-                "Search", color="primary", className="ms-2", n_clicks=0
-            ),
-            width="auto",
-        ),
-    ],
-    className="g-0 ms-auto flex-nowrap mt-3 mt-md-0",
-    align="center",
+# make a reuseable dropdown for the different examples
+dropdown = dbc.DropdownMenu(
+    children=[dbc.DropdownMenuItem(f"{section}", href=f"{section}") for section in dsh_sections],
+    nav=True,
+    in_navbar=True,
+    label="Dashboard Sections",
+    direction="down",
 )
 
 nav_bar = dbc.Navbar(
@@ -27,23 +24,27 @@ nav_bar = dbc.Navbar(
                 dbc.Row(
                     [
                         dbc.Col(html.Img(src=PLOTLY_LOGO, height="30px")),
-                        dbc.Col(dbc.NavbarBrand("Navbar", className="ms-2")),
+                        dbc.Col(dbc.NavbarBrand("Logo", className="ms-2")),
                     ],
                     align="center",
                     className="g-0",
                 ),
-                href="https://plotly.com",
+                href="/",
                 style={"textDecoration": "none"},
             ),
-            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+            dbc.NavbarToggler(id="navbar-toggler2", n_clicks=0),
             dbc.Collapse(
-                search_bar,
-                id="navbar-collapse",
-                is_open=False,
+                dbc.Nav(
+                    [dropdown],
+                    className="ms-auto",
+                    navbar=True,
+                ),
+                id="navbar-collapse2",
                 navbar=True,
             ),
-        ]
+        ],
     ),
     color="dark",
     dark=True,
+    className="mb-5",
 )

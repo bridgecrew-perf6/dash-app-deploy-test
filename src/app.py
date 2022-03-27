@@ -2,6 +2,7 @@ import os
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, State, dcc, html
 from flask import Flask
+from pages import *
 from components import *
 
 
@@ -20,22 +21,25 @@ app = Dash(
 app.title = "Analytical Dashboard"
 
 
-app.layout = html.Div(
-        [            
-            nav_bar,
-            gdp_viz,
-            html.H6("Change the value in the text box to see callbacks in action!"),
-            html.Div(
-                ["Input: ", dcc.Input(id="my-input", value="Write here!", type="text")],
-            ),
-            html.Br(),
-            html.Div(id="my-output"),
-        ],
-    )
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    nav_bar,
+    html.Div(id='page-content'),
+])
 # End dashboard rendering
 
 
 # Start dashboard callbacks
+@app.callback(Output('page-content', 'children'),
+              [Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == '/':
+        return home_layout()
+    elif pathname == '/Headcount':
+        return headcount_layout(app)
+    elif pathname == '/Summary':
+        return summary_layout()
+    
 @app.callback(
     Output("navbar-collapse", "is_open"),
     [Input("navbar-toggler", "n_clicks")],
@@ -51,15 +55,9 @@ def toggle_navbar_collapse(n, is_open):
         Input(component_id="my-input", component_property="value"),
     )
 def update_output_div(input_value):
-    """Returning user input.
-    Args:
-        input_value: the input of dash.
-    Returns:
-        string of the output in html.
-    """ 
     return f"{input_value}"
 
-# Start dashboard callbacks 
+# end dashboard callbacks 
 
 
 # this only runs if `$ python src/main.py` is executed
