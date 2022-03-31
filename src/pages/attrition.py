@@ -6,11 +6,11 @@ from utils import *
 
 # Add dashboard specific methods here
 
-def summary_layout(app):
+def attrition_layout(app):
 
     # Call dashboard specific methods here
 
     return [
-        html.Div(id='page3', children=[], className='page3'),
-        html.H6("Summary Layout is Working!"),
+        html.Div(id='page6', children=[], className='page6'),
+        html.H6("Attrition Layout is Working!"),
     ]

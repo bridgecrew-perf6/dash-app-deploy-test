@@ -1,5 +1,3 @@
-
-from click import style
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, State, dcc, html
 from pages import *
@@ -7,15 +5,16 @@ from components import *
 
 def app_layout(app):
     # Start dashboard rendering
-    app.title = "Analytical Dashboard"
+    app.title = "Diversity, Equity, & Inclusion Dashboard"
+    
 
 
     app.layout = html.Div([
         dcc.Location(id='url', refresh=False),
-        nav_bar,
-        html.Div(id='page-content')
+        app_navbar,
+        html.Div(id='page-content', className="container-fluid"),
+        app_footer
     ],
-        style = {'font-family': 'Helvetica'}
         )
     
     # End dashboard rendering
@@ -24,12 +23,18 @@ def app_layout(app):
     @app.callback(Output('page-content', 'children'),
                 [Input('url', 'pathname')])
     def display_page(pathname):
-        if pathname == '/':
-            return home_layout()
+        if pathname == '/' or pathname == '/Home':
+            return home_layout(app)
         elif pathname == '/Headcount':
             return headcount_layout(app)
-        elif pathname == '/Summary':
-            return summary_layout()
+        elif pathname == '/Diversity%20Summary':
+            return summary_layout(app)
+        elif pathname == '/Diversity%20Targets':
+            return targets_layout(app)
+        elif pathname == '/Fiscal%20Year%20Hires':
+            return hires_layout(app)
+        elif pathname == '/Voluntary%20Attrition':
+            return attrition_layout(app)
         
     @app.callback(
         Output("navbar-collapse", "is_open"),

@@ -20,6 +20,8 @@ cloudinary = "*"
 flask-admin = "*"
 flask-basicauth = "*"
 pandas = "*"
+colorama = "*"
+datetime = "*"
 
 [dev-packages]
 
