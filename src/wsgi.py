@@ -1,6 +1,4 @@
-from app import app as dash_app
-
-application = dash_app.server
+from app import app as application
 
 if __name__ == "__main__":
-    application.run()
+    application.server.run()
