@@ -7,8 +7,6 @@ def app_layout(app):
     # Start dashboard rendering
     app.title = "Diversity, Equity, & Inclusion Dashboard"
     
-
-
     app.layout = html.Div([
         dcc.Location(id='url', refresh=False),
         app_navbar,
@@ -45,12 +43,5 @@ def app_layout(app):
         if n:
             return not is_open
         return is_open
-
-    @app.callback(
-            Output(component_id="my-output", component_property="children"),
-            Input(component_id="my-input", component_property="value"),
-        )
-    def update_output_div(input_value):
-        return f"{input_value}"
 
     # end dashboard callbacks 
