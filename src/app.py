@@ -13,6 +13,7 @@ app = Dash(
     server=server,
 )
 
+
 # Start dashboard rendering
 app_layout(app)
 # End dashboard rendering
